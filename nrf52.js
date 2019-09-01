@@ -1,6 +1,5 @@
-var i2c = new I2C();
-i2c.setup({ scl : D30, sda: D31 });
-var acc = require("https://https://github.com/stephmack/ISP4520_Lora_espruino/blob/master/BMA280.js").connectI2C(i2c);
+var spi = SPI1.setup({sck:D17, miso:D12, mosi:D10});
+var acc = require("https://https://github.com/stephmack/ISP4520_Lora_espruino/blob/master/BMA280.js").connectSPI(spi);
 acc.init();
 var ic = 1;
 var i = 0;
