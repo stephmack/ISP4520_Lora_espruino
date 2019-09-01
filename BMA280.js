@@ -25,16 +25,18 @@ BMA280.prototype.init = function() {
 };
 
 //tt
-BMA280.prototype.read = function() {
-  var d = new DataView(this.r(REG.OUTX_L,6).buffer);
-  var xx = d.getInt16(0,1);
-  var yy = d.getInt16(2,1);
-  var zz = d.getInt16(4,1);
+BMA280.prototype.readAcc = function() {
+  var xx_L =this.send([0x81,0])[1];
+  var xx_M =this.send([0x82,0])[1];
+  var yy_L =this.send([0x83,0])[1];
+  var yy_M =this.send([0x84,0])[1];
+  var zz_L =this.send([0x85,0])[1];
+  var zz_M =this.send([0x86,0])[1];
+  var x = [xx_M,xx_L];
   
 };
 BMA280.prototype.send = function(data) {
   var res = this.spi.send(data,this.csPin);
-  //print(res);
   return res;
 }
 
@@ -43,9 +45,7 @@ exports = BMA280;
 exports.connectSPI = function (spi, csPin) {
   var conn = new BMA280(spi, csPin);
   var acc = conn.send([0x80|0x00,0x00])[1];
-  print(acc);
   if (acc != 0xFB) conn = null;
-  print(conn);
   return conn;
 };
 
