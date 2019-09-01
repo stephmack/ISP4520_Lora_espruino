@@ -32,9 +32,9 @@ BMA280.prototype.readAcc = function() {
   var yy_M =this.send([0x85,0])[1];
   var zz_L =this.send([0x86,0])[1];
   var zz_M =this.send([0x87,0])[1];
-  var xx = [xx_M <<6 | xx_L >> 2];
-  var yy = [yy_M <<6 | yy_L >> 2];
-  var zz = [zz_M <<6 | zz_L >> 2];
+  var xx = ([xx_M << 8 | xx_L])/4;
+  var yy = ([yy_M << 8 | yy_L])/4;
+  var zz = ([zz_M << 8 | zz_L])/4;
   return {
     x: xx,
     y: yy,
