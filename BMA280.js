@@ -16,7 +16,7 @@ var REG = {
 function BMA280(spi, csPin) {
   this.spi = spi;
   this.csPin = csPin;
-  if (this.spi.send(REG.WHO_AM_I,1)[0]!=0xFB) throw new Error("WHO_AM_I incorrect");
+  //if (this.spi.send(REG.WHO_AM_I,1)[0]!=0xFB) throw new Error("WHO_AM_I incorrect");
 }
 
 //tt
