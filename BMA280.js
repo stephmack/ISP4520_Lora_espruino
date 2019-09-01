@@ -47,7 +47,7 @@ exports.connectSPI = function (spi, csPin) {
   //var res = new DataView(acc.buffer);
   print("done");
   //print(res.getUint8(0,1));
-  if (acc != 0xEF) conn = null;
+  if (acc != 0xFB) conn = null;
   return conn;
 };
 
