@@ -32,8 +32,14 @@ BMA280.prototype.readAcc = function() {
   var yy_M =this.send([0x84,0])[1];
   var zz_L =this.send([0x85,0])[1];
   var zz_M =this.send([0x86,0])[1];
-  var x = [xx_M,xx_L];
-  
+  var xx = [xx_M <<8 | xx_L];
+  var yy = [yy_M <<8 | yy_L];
+  var zz = [zz_M <<8 | zz_L];
+  return {
+    x: xx,
+    y: yy,
+    z: zz
+  };
 };
 BMA280.prototype.send = function(data) {
   var res = this.spi.send(data,this.csPin);
