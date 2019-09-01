@@ -44,7 +44,7 @@ exports.connectSPI = function (spi, csPin) {
   print(spi,csPin);
   var acc = spi.send([0x80|0x00,0x00], csPin);
   if (acc != 0xEF) conn = null;
-  return spi;
+  return conn;
 };
 
 
