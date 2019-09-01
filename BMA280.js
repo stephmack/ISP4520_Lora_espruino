@@ -33,7 +33,7 @@ BMA280.prototype.read = function() {
   
 };
 BMA280.prototype.send = function(data) {
-  //var res = this.spi.send(data,this.csPin);
+  var res = this.spi.send(data,this.csPin);
   //return res;
 }
 
@@ -41,8 +41,8 @@ exports = BMA280;
 
 exports.connectSPI = function (spi, csPin) {
   var conn = new BMA280(spi, csPin);
-  print(spi,csPin);
-  var acc = spi.send([0x80|0x00,0x00], csPin);
+  print(spi,csPin,conn);
+  var acc = conn.send([0x80|0x00,0x00]);
   if (acc != 0xEF) conn = null;
   return conn;
 };
