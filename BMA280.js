@@ -1,4 +1,4 @@
-/* Written by Allen Mackey */
+/* Written by Stephen Mackey */
 //Espruino code
 //var i2c = new I2C();
 //i2c.setup({ scl : D30, sda: D31 });
@@ -6,25 +6,19 @@
 //print(acc.read()); // prints { x: ..., y: ..., z: ... }
 
 var REG = { 
-  WHO_AM_I: 0x0F,
-  OUTX_L: 0x06,
-  OUTX_H: 0x07,
-  OUTY_L: 0x08,
-  OUTY_H: 0x09,
-  OUTZ_L: 0x0A,
-  OUTZ_H: 0x0B,
-  CNTL1: 0x18,
-  CNTL3: 0x1A,
-  ODCNTL: 0x1B,
-  SLAVE: 0x1E,
-  WAI_VAL: 0x14,
-  LP_CNTL: 0x35,
+  WHO_AM_I: 0xFB,
+  OUTX_L: 0x01,
+  OUTX_M: 0x02,
+  OUTY_L: 0x03,
+  OUTY_M: 0x04,
+  OUTZ_L: 0x05,
+  OUTZ_M: 0x06,
 };
 
 //tt
-function LIS2MDL(options,r,w) {
-  this.r = r;
-  this.w = w;
+function BMA280(spi, csPin) {
+  this.spi = spi;
+  this.csPin = csPin;
   if (this.r(REG.WHO_AM_I,1)[0]!=20) throw new Error("WHO_AM_I incorrect");
   //this.w(REG.CNTL1, 0x50); //config 0 1 0 1 0 0 0 0 OLD
   //this.w(REG.CNTL1, 0x10); //config 0 0 0 1 0 0 0 0 NEW
