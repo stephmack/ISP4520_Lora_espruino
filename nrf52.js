@@ -1,5 +1,6 @@
 var spi = SPI1.setup({sck:D17, miso:D12, mosi:D10});
-var acc = require("https://https://github.com/stephmack/ISP4520_Lora_espruino/blob/master/BMA280.js").connectSPI(spi);
+var csPin =  D7; 
+var acc = require("https://https://github.com/stephmack/ISP4520_Lora_espruino/blob/master/BMA280.js").connectSPI(spi,csPin);
 acc.init();
 var ic = 1;
 var i = 0;
