@@ -32,6 +32,7 @@ BMA280.prototype.read = function() {
   var zz = d.getInt16(4,1);
   
 };
+exports = BMA280;
 
 exports.connectSPI = function (spi, csPin) {
   var spi = new BMA280(spi, csPin);
@@ -40,4 +41,4 @@ exports.connectSPI = function (spi, csPin) {
   return spi;
 };
 
-exports = BMA280;
+
