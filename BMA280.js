@@ -33,8 +33,8 @@ BMA280.prototype.read = function() {
   
 };
 BMA280.prototype.send = function(data) {
-  var res = this.spi.send(data,this.csPin);
-  return res;
+  //var res = this.spi.send(data,this.csPin);
+  //return res;
 }
 
 exports = BMA280;
