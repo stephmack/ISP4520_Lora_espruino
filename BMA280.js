@@ -41,7 +41,7 @@ exports = BMA280;
 
 exports.connectSPI = function (spi, csPin) {
   //var conn = new BMA280(spi, csPin);
-  var acc = spi.send([0x80|0x00,0x00], csPin);
+  var acc = this.spi.send([0x80|0x00,0x00], csPin);
   if (acc != 0xEF) spi = null;
   return spi;
 };
