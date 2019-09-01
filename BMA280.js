@@ -33,7 +33,7 @@ BMA280.prototype.read = function() {
   
 };
 
-exports.connect = function (spi, csPin) {
+exports.connectSPI = function (spi, csPin) {
   var spi = new W25Q(spi, csPin);
   var acc = spi.send([0x80|0x00,0x00],csPin);
   if (acc != 0xEF) spi = null;
