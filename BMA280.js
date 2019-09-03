@@ -7,12 +7,12 @@
 
 var REG = { 
   WHO_AM_I: 0xFB,
-  OUTX_L: 0x06,
-  OUTX_H: 0x07,
-  OUTY_L: 0x08,
-  OUTY_H: 0x09,
-  OUTZ_L: 0x0A,
-  OUTZ_H: 0x0B,
+  OUTX_L: 0x82,
+  OUTX_H: 0x83,
+  OUTY_L: 0x84,
+  OUTY_H: 0x85,
+  OUTZ_L: 0x86,
+  OUTZ_H: 0x87,
 };
 
 //tt
@@ -28,14 +28,14 @@ BMA280.prototype.init = function() {
 
 //tt
 BMA280.prototype.readAcc = function() {
-  var acc_res = new ArrayBuffer(6);
+  var acc_res = new ArrayBuffer(12);
   var res = new DataView(acc_res);
-  res.setInt8(0,(this.send([0x82,0])[1]));
-  res.setInt8(1,(this.send([0x83,0])[1]));
-  res.setInt8(2,(this.send([0x84,0])[1]));
-  res.setInt8(3,(this.send([0x85,0])[1]));
-  res.setInt8(4,(this.send([0x86,0])[1]));
-  res.setInt8(5,(this.send([0x87,0])[1]));
+  res.setInt16(0,(this.send([OUTX_L,0])));
+  res.setInt8(2,(this.send([OUTX_H,0])));
+  res.setInt8(4,(this.send([OUTY_L,0])));
+  res.setInt8(6,(this.send([OUTY_H,0])));
+  res.setInt8(8,(this.send([OUTY_L,0])));
+  res.setInt8(10,(this.send([OUTY_H,0])));
   var xx_L = this.send([0x82,0])[1];
   var xx_M = this.send([0x83,0])[1];
   var yy_L = this.send([0x84,0])[1];
@@ -62,6 +62,6 @@ exports.BMA280;
 exports.connectSPI = function(spi, csPin) {
   var conn = new BMA280(spi, csPin);
   var acc = conn.send([0x80|0x00,0x00])[1];
-  if (acc != 0xFB) conn = null;
+  if (acc != WHO_AM_I) conn = null;
   return conn;
 };
