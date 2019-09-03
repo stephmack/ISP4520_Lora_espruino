@@ -43,9 +43,9 @@ BMA280.prototype.readAcc = function() {
   //var xx = [xx_M << 6 | xx_L >> 2];
   //var yy = [yy_M << 6 | yy_L >> 2];
   //var zz = [zz_M << 6 | zz_L >> 2];
-  return {
-    res;
-  };
+  //return {
+  //  res;
+  //};
 };
 BMA280.prototype.send = function(data) {
   var res = this.spi.send(data,this.csPin);
