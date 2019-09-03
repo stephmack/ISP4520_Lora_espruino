@@ -26,14 +26,6 @@ BMA280.prototype.init = function() {
 
 //tt
 BMA280.prototype.readAcc = function() {
-  //var acc_res = new ArrayBuffer(6);
-  //var res = new DataView(acc_res);
- // res.setInt8(0,(this.send([0x82,0])[1]));
-  //res.setInt8(1,(this.send([0x83,0])[1]));
- // res.setInt8(2,(this.send([0x84,0])[1]));
- // res.setInt8(3,(this.send([0x85,0])[1]));
-  //res.setInt8(4,(this.send([0x86,0])[1]));
-  //res.setInt8(5,(this.send([0x87,0])[1]));
   var xx_L = this.send([0x82,0])[1];
   var xx_M = this.send([0x83,0])[1];
   var yy_L = this.send([0x84,0])[1];
@@ -53,7 +45,7 @@ BMA280.prototype.readAcc = function() {
 BMA280.prototype.send = function(data) {
   var res = this.spi.send(data,this.csPin);
   return res;
-}
+};
 
 exports = BMA280;
 
