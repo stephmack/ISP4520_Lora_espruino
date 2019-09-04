@@ -35,14 +35,27 @@ BMA280.prototype.readAcc = function() {
   var yy_M = this.send([REG.OUTY_H,0])[1];
   var zz_L = this.send([REG.OUTY_L,0])[1];
   var zz_M = this.send([REG.OUTY_H,0])[1];
-  var xx = [xx_M << 6 | xx_L >> 2];
-  var yy = [yy_M << 6 | yy_L >> 2];
-  var zz = [zz_M << 6 | zz_L >> 2];
+  x = new Int8Array(2);
+  xx = DataView(x.buffer,0,2);
+  xx.setInt8(0, xx_M ,0);
+  xx.setInt8(1, xx_L ,0);
+  var x_acc = (xx.getInt16(0,0) >> 2)/4096;
+
+  y = new Int8Array(2);
+  yy = DataView(x.buffer,0,2);
+  yy.setInt8(0, yy_M ,0);
+  yy.setInt8(1, yy_L ,0);
+  var y_acc = (yy.getInt16(0,0) >> 2)/4096;
+
+  z = new Int8Array(2);
+  zz = DataView(x.buffer,0,2);
+  zz.setInt8(0, zz_M ,0);
+  zz.setInt8(1, zz_L ,0);
+  var z_acc = (zz.getInt16(0,0) >> 2)/4096;
   return {
-    x: xx,
-    y: yy,
-    z: zz,
-    res: res
+    x: x_acc,
+    y: y_acc,
+    z: z_acc,
   };
 };
 
