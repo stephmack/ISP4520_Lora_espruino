@@ -28,7 +28,7 @@ BMA280.prototype.init = function() {
 
 //tt
 BMA280.prototype.readAcc = function() {
-  print("B");
+  print("C");
   var xx_L = this.send([REG.OUTX_L,0])[1];
   var xx_M = this.send([REG.OUTX_H,0])[1];
   var yy_L = this.send([REG.OUTY_L,0])[1];
