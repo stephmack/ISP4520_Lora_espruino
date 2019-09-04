@@ -30,3 +30,8 @@ sx.rx(function(err, inf) {
 setTimeout(function() {
   sx.standby();
 }, 10000);
+
+sx.setTxConfig(config);
+sx.send("Hello", function() {
+  console.log("TX done");
+});
