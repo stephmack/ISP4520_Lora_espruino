@@ -18,3 +18,15 @@ var config = {
 };
 // Until DIO0 line irqs are implemented we need this:
 setInterval(function() { sx.onIRQ(); }, 100);
+
+sx.setRxConfig(config);
+// enter receive mode
+sx.rx(function(err, inf) {
+  // Error, or you get signal strength and data returned in an object
+  if (err) console.log("RX ERROR");
+  else console.log("RX>",inf);
+});
+// after a while, stop receiving
+setTimeout(function() {
+  sx.standby();
+}, 10000);
