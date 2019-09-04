@@ -33,8 +33,8 @@ BMA280.prototype.readAcc = function() {
   var xx_M = this.send([REG.OUTX_H,0])[1];
   var yy_L = this.send([REG.OUTY_L,0])[1];
   var yy_M = this.send([REG.OUTY_H,0])[1];
-  var zz_L = this.send([REG.OUTY_L,0])[1];
-  var zz_M = this.send([REG.OUTY_H,0])[1];
+  var zz_L = this.send([REG.OUTZ_L,0])[1];
+  var zz_M = this.send([REG.OUTZ_H,0])[1];
   x = new Int8Array(2);
   xx = DataView(x.buffer,0,2);
   xx.setInt8(0, xx_M ,0);
